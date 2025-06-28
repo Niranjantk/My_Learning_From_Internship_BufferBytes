@@ -2,15 +2,15 @@ import 'package:demo_project_1/Pages/Add_money.dart';
 import 'package:demo_project_1/Pages/home1.1.dart';
 import 'package:demo_project_1/Pages/profile_page.dart';
 import 'package:flutter/material.dart';
-class NavigationBar extends StatefulWidget {
-  const NavigationBar({super.key});
+class HomeNavigationBar extends StatefulWidget {
+  const HomeNavigationBar({super.key});
 
   @override
   //holds the current page index
-  State<NavigationBar> createState() => _NavigationBarState();
+  State<HomeNavigationBar> createState() => _NavigationBarState();
 }
 
-class _NavigationBarState extends State<NavigationBar> {
+class _NavigationBarState extends State<HomeNavigationBar> {
   
   int _currentindex = 0;
   
