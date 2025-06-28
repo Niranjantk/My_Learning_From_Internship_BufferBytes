@@ -44,6 +44,7 @@ class ProfileSectionPersonalInfo extends StatelessWidget {
           Onecontainerofpersonaldetainls(),
           Onecontainerofpersonaldetainls(),
           Onecontainerofpersonaldetainls(),
+          
         ],
       ),
     );
