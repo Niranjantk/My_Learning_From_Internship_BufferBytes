@@ -23,6 +23,7 @@ class ProfileSectionPersonalInfo extends StatelessWidget {
                 child: const Text("Personal info",
                 style: TextStyle(
                   fontSize: 20,
+                  
                   fontFamily: 'SpaceGrotesk',
                   fontWeight: FontWeight.bold
 
