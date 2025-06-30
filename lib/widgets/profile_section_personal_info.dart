@@ -18,6 +18,7 @@ class ProfileSectionPersonalInfo extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              
               Padding(
                 padding: const EdgeInsets.fromLTRB(20, 20, 0, 10),
                 child: const Text("Personal info",
