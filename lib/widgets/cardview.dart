@@ -11,31 +11,34 @@ class Cardview extends StatelessWidget {
       height: 190,
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 255, 255, 255),
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(25),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(19.0),
-            child: Text("Your balance", style: TextStyle(fontSize: 17)),
+            padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+            child: Text("Your balance", style: TextStyle(fontSize: 17,color: const Color.fromARGB(255, 89, 89, 89))),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 40, 10),
+                padding: const EdgeInsets.fromLTRB(20, 0, 40, 10),
                 child: const Text(
-                  "\$ 3,200,00",
+                  "\$3,200.00",
 
                   style: TextStyle(
                     //fontFamily: "SpaceGrotesk",
-                    fontSize: 35,
+                    fontSize: 48,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
               ),
-              const Icon(Icons.visibility_off),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 30, 10),
+                child: const Icon(Icons.visibility_off_outlined),
+              ),
             ],
           ),
           Center(
@@ -44,7 +47,7 @@ class Cardview extends StatelessWidget {
                 child: Text(
                   "Add money",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'SpaceGrotesk',
                     color: Colors.white,
@@ -52,7 +55,7 @@ class Cardview extends StatelessWidget {
                 ),
               ),
               height: 50,
-              width: 300,
+              width: 330,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 0, 0, 0),
                 borderRadius: BorderRadius.circular(30),

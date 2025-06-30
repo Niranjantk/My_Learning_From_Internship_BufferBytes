@@ -39,8 +39,8 @@ class _NavigationBarState extends State<HomeNavigationBar> {
         items: [
           
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.map),label: "Map"),
-          BottomNavigationBarItem(icon: Icon(Icons.history),label: "History", ),
+          BottomNavigationBarItem(icon: Icon(Icons.map_outlined),label: "Map"),
+          BottomNavigationBarItem(icon: Icon(Icons.history_outlined),label: "History", ),
           BottomNavigationBarItem(icon: Icon(Icons.settings),label: "Settings"),
           BottomNavigationBarItem(icon: Icon(Icons.face_2_outlined), label: "Profile"),
         ],),

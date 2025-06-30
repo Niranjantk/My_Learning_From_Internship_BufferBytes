@@ -33,13 +33,30 @@ class _Homepage1State extends State<Homepage1> {
             margin: EdgeInsets.fromLTRB(0, 10, 20, 0),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(Icons.notifications_none_outlined),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: const Icon(Icons.notifications_none_outlined),
+                  ),
+                   Positioned(
+                  right: 2,
+                  child: Container(
+                    width: 10,height: 10,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.amber
+                    ),
+                    ),
+                 ),
+                ],
+              ),
             ),
-            width: 45,
+            width: 50,
             height: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.black)
+              border: Border.all(color: const Color.fromARGB(255, 111, 111, 111),width: .3,style: BorderStyle.solid)
             ),
           ),
         ],
@@ -55,7 +72,7 @@ class _Homepage1State extends State<Homepage1> {
             const Text("Welcome to Neobank",
             style: TextStyle(
               fontFamily: "SpaceGrotesk",
-              fontSize: 15,
+              fontSize: 17.5,
             ),),
             
           ],
@@ -69,25 +86,30 @@ class _Homepage1State extends State<Homepage1> {
             Cardview(),
             
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 
                 Padding(
-                  padding: const EdgeInsets.only(right: 60),
+                  padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
                   child: const Text("Your cards",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 27,
                   ),),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const Icon(Icons.add),
-                    const Text("New card",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
+                      child: const Text("New card",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 17,
+                        fontFamily: 'SpaceGrotesk',
+                      ),),
+                    ),
                   ],
                 ),
               ],
@@ -95,12 +117,12 @@ class _Homepage1State extends State<Homepage1> {
             ),
           ScrolableCards(),
            RecrodesOfTranscations(),
-           ElevatedButton(onPressed: (){ 
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>MapPage(),),);
-           }, child: const Text("to the Map page")),
-           ElevatedButton(onPressed: (){ 
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfilePage(),),);
-           }, child: const Text("to the Map page"))
+          //  ElevatedButton(onPressed: (){ 
+          //   Navigator.push(context, MaterialPageRoute(builder: (context)=>MapPage(),),);
+          //  }, child: const Text("to the Map page")),
+          //  ElevatedButton(onPressed: (){ 
+          //   Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfilePage(),),);
+          //  }, child: const Text("to the Map page"))
           ],
         
         ),
