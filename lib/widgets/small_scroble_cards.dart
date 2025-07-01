@@ -13,22 +13,25 @@ class SmallScrolableCards extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           //first
-          Container(
-            
-            margin: EdgeInsets.fromLTRB(25, 10, 15, 30),
-            width: 150,
-            height: 150,
-            
-            decoration: BoxDecoration(
-               borderRadius: BorderRadius.circular(30),
-               image: DecorationImage(image: AssetImage("assets/images/leaves.jpg"),
-               fit: BoxFit.cover,),
-               
+           Container(
+              
+              margin: EdgeInsets.fromLTRB(25, 10, 15, 30),
+              width: 150,
+              height: 150,
+              
+              decoration: BoxDecoration(
+              
+                 
+                 borderRadius: BorderRadius.circular(30),
+                 image: DecorationImage(image: AssetImage("assets/images/card22.jpeg"),
+                 fit: BoxFit.cover,),
+                 
+              ),
+              child: Imagesalign(),
+              
+              
             ),
-            child: Imagesalign(),
-            
-            
-          ),
+          
           //secondc
           
           Container(
@@ -37,7 +40,8 @@ class SmallScrolableCards extends StatelessWidget {
             height: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: const Color.fromARGB(255, 114, 114, 114),
+              image: DecorationImage(image: AssetImage("assets/images/card2.jpeg"),
+               fit: BoxFit.cover,),
             ),
             child: Imagesalign(),
           ),
@@ -48,7 +52,8 @@ class SmallScrolableCards extends StatelessWidget {
             height: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.yellowAccent
+              image: DecorationImage(image: AssetImage("assets/images/card3.jpeg"),
+               fit: BoxFit.cover,),
             ),
             child: Imagesalign()
           ),
@@ -59,7 +64,8 @@ class SmallScrolableCards extends StatelessWidget {
             height: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: Colors.white,
+               image: DecorationImage(image: AssetImage("assets/images/card4.jpeg"),
+               fit: BoxFit.cover,),
             ),
             child: Imagesalign()
           ),

@@ -14,12 +14,14 @@ class MapPage extends StatelessWidget {
         //leading: Text("data"),
         title: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: const Text(
-            "Add Money ",
-
-            style: TextStyle(
-              fontFamily: "SpaceGrotesk",
-              fontWeight: FontWeight.w900,
+          child: Center(
+            child: const Text(
+              "Add Money ",
+            
+              style: TextStyle(
+                fontFamily: "SpaceGrotesk",
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
         ),

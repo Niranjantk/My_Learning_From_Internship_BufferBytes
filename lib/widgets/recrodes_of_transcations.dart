@@ -81,10 +81,10 @@ class Recordescontent extends StatelessWidget {
         borderRadius: BorderRadius.circular(0),
         
       ),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+      
+        //scrollDirection: Axis.vertical,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
           child: Row(
            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
@@ -177,7 +177,7 @@ class Recordescontent extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      
     );
   }
 }
