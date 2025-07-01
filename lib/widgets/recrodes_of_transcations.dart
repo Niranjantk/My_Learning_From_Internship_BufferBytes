@@ -1,8 +1,17 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class RecrodesOfTranscations extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class RecrodesOfTranscations extends StatefulWidget {
   const RecrodesOfTranscations({super.key});
 
+  @override
+  State<RecrodesOfTranscations> createState() => _RecrodesOfTranscationsState();
+}
+
+class _RecrodesOfTranscationsState extends State<RecrodesOfTranscations> {
+  
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -67,9 +76,34 @@ class RecrodesOfTranscations extends StatelessWidget {
   }
 }
 
-class Recordescontent extends StatelessWidget {
+class Recordescontent extends StatefulWidget {
   const Recordescontent({super.key});
 
+  @override
+  State<Recordescontent> createState() => _RecordescontentState();
+}
+
+class _RecordescontentState extends State<Recordescontent> {
+  Future <Map<String,dynamic>> gettransdata() async{
+    try{
+      final res = await http.get(Uri.parse('http://10.0.2.2:3000/transactions'));
+
+      if(res.statusCode == 200  ){
+        final data = jsonDecode(res.body);
+        print(data);
+        return data;
+      
+      }
+      else{
+        throw Exception("Fail");
+      }
+      
+    }
+    catch(e){
+      print("Erron to fetch data");
+      return {};
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -123,9 +157,19 @@ class Recordescontent extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 0, 40, 7),
-                      child: const Text(
-                        "Star bug coffee",
-                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+                      child: FutureBuilder(
+                        future: gettransdata(),
+                        builder: (context, snap) {
+                          if(snap.hasData){
+                            return  Text((snap.data as Map)["title"],
+                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),
+                          );
+                          }
+                          else{
+                            return CircularProgressIndicator();
+                          }
+                          
+                        }
                       ),
                     ),
 
@@ -181,3 +225,16 @@ class Recordescontent extends StatelessWidget {
     );
   }
 }
+
+
+//looping the container
+//loading bar before the data load
+//figma design of medical store bill system
+//create a app from youtube
+//github
+//Leetcode
+//portfolio
+//Resume
+//linkedin
+//monkeytype
+//

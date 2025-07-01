@@ -18,13 +18,14 @@ class _CardviewState extends State<Cardview> {
   //   final response = await http.get(Uri.parse('http://10.0.2.2:3000/balance'));
   //   return jsonDecode(response.body)['balance'];
   // }
-   Future<Map<String, dynamic>> getData() async {
+  Future<Map<String, dynamic>> getData() async {
   try {
     final response = await http.get(Uri.parse('http://10.0.2.2:3000/balance'));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      return data['balance'];
+      
+      return data;
     } else {
       throw Exception('Failed to load data');
     }
@@ -59,6 +60,7 @@ class _CardviewState extends State<Cardview> {
                   future: getData(),
                   builder: (context, snapshot) {
                     if(snapshot.hasData){
+                      
                       return  Text((snapshot.data as Map)['amount'].toString(),
                       style: TextStyle(
                         //fontFamily: "SpaceGrotesk",
