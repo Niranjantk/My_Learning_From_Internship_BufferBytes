@@ -6,7 +6,12 @@ class MapFoodAndStore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
+     body: ListView.builder(
+       itemCount: 20,
+       itemBuilder: (BuildContext context, int index) {
+         return Text('data') ;
+       },
+     ),
     );
   }
 }

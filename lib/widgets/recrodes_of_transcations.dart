@@ -238,3 +238,21 @@ class _RecordescontentState extends State<Recordescontent> {
 //linkedin
 //monkeytype
 //
+
+
+// {
+//   "transactions": [  map type => list type
+//     { "id": "1",
+//      "title": "star bucks coffee", 
+//      "date": "2024-04-13T08:30:00Z", 
+//      "amount": 450, 
+//      "cashback": 14
+//     }
+    
+//   ],
+//   "balance": {    map type
+//     "amount": 2403
+//   }
+// }
+
+
