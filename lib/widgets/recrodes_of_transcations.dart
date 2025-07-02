@@ -11,80 +11,7 @@ class RecrodesOfTranscations extends StatefulWidget {
 }
 
 class _RecrodesOfTranscationsState extends State<RecrodesOfTranscations> {
-  
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Container(
-        margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
-        width: 370,
-        //height: 450,
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255),
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Column(
-          children: [
-            //first
-            //Container(),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(26, 26, 18, 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "Transcation",
-                    style: TextStyle(
-                      fontSize: 26,
-                      //fontFamily: 'SpaceGrotesk',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10),
-                    child: const Text(
-                      "See all",
-                      style: TextStyle(
-                        fontSize: 18,
-                        //fontFamily:'SpaceGrotesk' ,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            Recordescontent(),
-            //second
-            Recordescontent(),
-            //third
-            Recordescontent(),
-            //fourth
-            Recordescontent(),
-            //fifth
-            Recordescontent(),
-            //sisth
-            Recordescontent(),
-
-            //seventh
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Recordescontent extends StatefulWidget {
-  const Recordescontent({super.key});
-
-  @override
-  State<Recordescontent> createState() => _RecordescontentState();
-}
-
-class _RecordescontentState extends State<Recordescontent> {
-  Future <Map<String,dynamic>> gettransdata() async{
+  Future <List<Map<String,dynamic>>> gettransdata() async{
     try{
       final res = await http.get(Uri.parse('http://10.0.2.2:3000/transactions'));
 
@@ -101,9 +28,96 @@ class _RecordescontentState extends State<Recordescontent> {
     }
     catch(e){
       print("Erron to fetch data");
-      return {};
+      return [];
     }
   }
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+       itemCount: ,
+      
+       itemBuilder: (BuildContext context, int index) {
+         return Text(data[index]['']) ;
+       },
+     );
+  }
+  String d = "skdlf";
+  int h=d.length;
+    // return SingleChildScrollView(
+      // scrollDirection: Axis.vertical,
+      // child: Container(
+      //   margin: EdgeInsets.fromLTRB(0, 0, 0, 30),
+      //   width: 370,
+      //   //height: 450,
+      //   decoration: BoxDecoration(
+      //     color: const Color.fromARGB(255, 255, 255, 255),
+      //     borderRadius: BorderRadius.circular(30),
+      //   ),
+      //   child: Column(
+      //     children: [
+      //       //first
+      //       //Container(),
+      //       Padding(
+      //         padding: const EdgeInsets.fromLTRB(26, 26, 18, 10),
+      //         child: Row(
+      //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //           children: [
+      //             const Text(
+      //               "Transcation",
+      //               style: TextStyle(
+      //                 fontSize: 26,
+      //                 //fontFamily: 'SpaceGrotesk',
+      //                 fontWeight: FontWeight.bold,
+      //               ),
+      //             ),
+      //             Padding(
+      //               padding: const EdgeInsets.only(right: 10),
+      //               child: const Text(
+      //                 "See all",
+      //                 style: TextStyle(
+      //                   fontSize: 18,
+      //                   //fontFamily:'SpaceGrotesk' ,
+      //                   fontWeight: FontWeight.bold,
+      //                 ),
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       ),
+
+            
+
+            // Recordescontent(),
+            // //second
+            // Recordescontent(),
+            // //third
+            // Recordescontent(),
+            // //fourth
+            // Recordescontent(),
+            // //fifth
+            // Recordescontent(),
+            // //sisth
+            // Recordescontent(),
+
+            //seventh
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+}
+
+class Recordescontent extends StatefulWidget {
+  const Recordescontent({super.key});
+
+  @override
+  State<Recordescontent> createState() => _RecordescontentState();
+}
+
+class _RecordescontentState extends State<Recordescontent> {
+  
   @override
   Widget build(BuildContext context) {
     return Container(

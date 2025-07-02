@@ -116,7 +116,8 @@ class _Homepage1State extends State<Homepage1> {
               
             ),
           ScrolableCards(),
-           RecrodesOfTranscations(),
+          
+          RecrodesOfTranscations(),
           //  ElevatedButton(onPressed: (){ 
           //   Navigator.push(context, MaterialPageRoute(builder: (context)=>MapPage(),),);
           //  }, child: const Text("to the Map page")),
