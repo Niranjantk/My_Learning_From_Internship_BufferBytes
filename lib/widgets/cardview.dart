@@ -60,7 +60,7 @@ class _CardviewState extends State<Cardview> {
                   future: getData(),
                   builder: (context, snapshot) {
                     if(snapshot.hasData){
-                      
+            
                       return  Text((snapshot.data as Map)['amount'].toString(),
                       style: TextStyle(
                         //fontFamily: "SpaceGrotesk",
@@ -70,6 +70,7 @@ class _CardviewState extends State<Cardview> {
                     );
                     }
                     else{
+                      print('getData()');
                       return CircularProgressIndicator();
                     }
                     
