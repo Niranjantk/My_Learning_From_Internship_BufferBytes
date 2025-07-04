@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:demo_project_1/Models/models.dart';
 import 'package:demo_project_1/widgets/cardview.dart';
 import 'package:demo_project_1/widgets/recrodes_of_transcations.dart';
 import 'package:demo_project_1/widgets/scrolable_cards.dart';
@@ -21,27 +22,42 @@ class Homepage1 extends StatefulWidget {
 }
 
 class _Homepage1State extends State<Homepage1> {
-  int myindex = 10;
-  Future<List<Map<String, dynamic>>> gettransdata() async {
-    try {
-      final res = await http.get(
+  bool loadingstate = true;
+  var value = '';
+  List<dynamic> transcations = [];
+  void getdata() async{
+    try{
+      final response = await http.get(
         Uri.parse('http://10.0.2.2:3000/transactions'),
       );
+      if(response.statusCode == 200){
+        final data = jsonDecode(response.body);
+        setState(() {
+          loadingstate = false;
+          transcations = data;
 
-      if (res.statusCode == 200) {
-        final Map<String, dynamic> data = jsonDecode(res.body);
-        print(data);
-        return List<Map<String, dynamic>>.from(data['transactions']);
-      } else {
-        throw Exception("Fail");
+        });
       }
-    } catch (e) {
-      print("Erron to fetch data");
-      return [];
+      else{
+        throw Exception("error");
+      }
+    }
+    catch(e){
+      print("object");
     }
   }
+//dart basic learning
+//bills
+//-internship
+//-Wifi bill
+//income
+//-kerseri bank
 
   @override
+  void initState(){
+    super.initState();
+    getdata();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
       //background color
@@ -104,83 +120,61 @@ class _Homepage1State extends State<Homepage1> {
           ],
         ),
       ),
-      // body: Column(
-      //   children: [
-      //     SingleChildScrollView(
-      //       scrollDirection: Axis.vertical,
-      //       child: Padding(
-      //         padding: const EdgeInsets.all(0),
-      //         child: Column(
-      //           children: [
-      //             Cardview(),
-              
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Padding(
-                  //       padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
-                  //       child: const Text(
-                  //         "Your cards",
-                  //         style: TextStyle(
-                  //           fontWeight: FontWeight.bold,
-                  //           fontSize: 27,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Row(
-                  //       mainAxisSize: MainAxisSize.max,
-                  //       children: [
-                  //         const Icon(Icons.add),
-                  //         Padding(
-                  //           padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
-                  //           child: const Text(
-                  //             "New card",
-                  //             style: TextStyle(
-                  //               fontWeight: FontWeight.w800,
-                  //               fontSize: 17,
-                  //               fontFamily: 'SpaceGrotesk',
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ],
-                  // ),
-      //             ScrolableCards(),
-      //             ListView.builder(
+      
+      body: ListView.separated(
+             separatorBuilder: (context,index)=> Divider(),
+              itemBuilder: (context,index){
+                if(index == 0 ){
+                  return Cardsview();
+                }
+                else{
                   
-      //               physics: NeverScrollableScrollPhysics(),
-      //               shrinkWrap: true,
-      //               itemCount: myindex,
-      //               itemBuilder: (BuildContext context, int index) {
-      //                 return Padding(
-      //                   padding: const EdgeInsets.symmetric(
-      //                     vertical: 8.0,
-      //                     horizontal: 16.0,
-      //                   ),
-      //                   child: Card(
-      //                     elevation: 2,
-      //                     child: ListTile(
-      //                       leading: Icon(Icons.credit_card),
-      //                       title: Text('Card ${index + 1}'),
-      //                       subtitle: Text('Card details here'),
-      //                     ),
-      //                   ),
-      //                 );
-      //               },
-      //             ),
-      //           ],
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
-
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+                  return 
+                     Container(
+                      decoration: BoxDecoration(
+                        color: Colors.amber
+                      ),
+                      child: ListTile(
+                        title: Text('${transcations['title']}'),
+                        leading: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black),
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage('assets/images/starbucks.jpeg'),),
+                          ),
+                        ),
+                        subtitle: Text('October 17,09:00 PM'),
+                        trailing: Icon(Icons.abc_rounded),
+                      ),
+                    )
+                  ;
+                  
+                }
+              }, 
+              
+              
+              itemCount: transcations.length+1),
+          
         
-        child: Column(
-          children: [
+      
+      
+      
+    );
+  }
+}
+class Cardsview extends StatelessWidget {
+  const Cardsview({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+       children: [
             Cardview(),
              Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -215,25 +209,9 @@ class _Homepage1State extends State<Homepage1> {
                     ],
                   ),
             ScrolableCards(),
-            ListView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              itemCount: 30,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8.0,
-                          horizontal: 16.0,
-                        ),
-                        child: Container(
-                         wid,
-                        ),
-                );
-              },
-            ),
+            
+            
           ],
-        ),
-      ),
     );
   }
 }
