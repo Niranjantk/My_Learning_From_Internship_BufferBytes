@@ -1,4 +1,4 @@
-import 'package:demo_project_1/widgets/settings_containers.dart';
+import 'package:demo_project_1/Pages/Settings/widget/settings_containers.dart';
 import 'package:flutter/material.dart';
 class SteeingPage extends StatelessWidget {
   const SteeingPage({super.key});

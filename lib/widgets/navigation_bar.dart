@@ -1,8 +1,9 @@
-import 'package:demo_project_1/Pages/Add_money.dart';
-import 'package:demo_project_1/Pages/home1.1.dart';
-import 'package:demo_project_1/Pages/map_food_and_store.dart';
-import 'package:demo_project_1/Pages/profile_page.dart';
-import 'package:demo_project_1/Pages/settings_page.dart';
+
+import 'package:demo_project_1/Pages/History/history_page.dart';
+import 'package:demo_project_1/Pages/Home/home_page.dart';
+import 'package:demo_project_1/Pages/Map/map_page.dart';
+import 'package:demo_project_1/Pages/Profile/profile_page.dart';
+import 'package:demo_project_1/Pages/Settings/settings_page.dart';
 import 'package:flutter/material.dart';
 class HomeNavigationBar extends StatefulWidget {
   const HomeNavigationBar({super.key});

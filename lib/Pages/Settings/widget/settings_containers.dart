@@ -1,4 +1,4 @@
-import 'package:demo_project_1/widgets/switch_moving.dart';
+import 'package:demo_project_1/Pages/Settings/widget/switch_moving.dart';
 import 'package:flutter/material.dart';
 //Allow transcations between accoounds access
 class AllowTranscations extends StatelessWidget {

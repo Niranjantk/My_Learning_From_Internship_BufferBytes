@@ -1,4 +1,4 @@
-import 'package:demo_project_1/widgets/profile_section_personal_info.dart';
+import 'package:demo_project_1/Pages/Profile/widget/profile_section_personal_info.dart';
 import 'package:flutter/material.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});

@@ -1,6 +1,7 @@
-import 'package:demo_project_1/widgets/addmoney_page_addmoney_optrion.dart';
-import 'package:demo_project_1/widgets/scrolable_cards.dart';
-import 'package:demo_project_1/widgets/small_scroble_cards.dart';
+
+import 'package:demo_project_1/Pages/History/widgets/addmoney_page_addmoney_optrion.dart';
+import 'package:demo_project_1/Pages/History/widgets/small_scroble_cards.dart';
+
 import 'package:flutter/material.dart';
 
 class MapPage extends StatelessWidget {
