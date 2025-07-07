@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
+//HomeNavigationBar
 
 import 'package:demo_project_1/Pages/Map/widget/map_foolpage1.dart';
+import 'package:demo_project_1/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class MapFoodAndStore extends StatefulWidget {
@@ -27,8 +30,12 @@ class _MyHomepageState extends State<MyHomepage> {
   //init, didchangedep, build, dispost
   @override
   void initState() { //once call 
+    gotologin();
     super.initState();
-    
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    gotologin();
+  });
+
   }
   @override
   void didChangeDependencies() { //while building 
@@ -44,10 +51,10 @@ class _MyHomepageState extends State<MyHomepage> {
     
   }
   //dispose - once to remove from the momory
-  // Future <void> gotologin ()async{
-  //   Future.delayed(Duration(seconds: 3));
-  //   Navigator.of(context).push(MaterialPageRoute(builder: (){
-  //     return Screenlogin();
-  //   }));
-  // }
+  Future <void> gotologin ()async{
+    await Future.delayed(Duration(seconds: 3));
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+      return HomeNavigationBar();
+    }));
+  }
 }

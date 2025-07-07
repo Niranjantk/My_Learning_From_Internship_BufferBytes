@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:demo_project_1/api/api_transaction_details.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-
+import 'package:http/http.dart' as http;
 
 class Cardview extends StatefulWidget {
   const Cardview({super.key});
@@ -11,9 +12,11 @@ class Cardview extends StatefulWidget {
 
 class _CardviewState extends State<Cardview> {
   final AddMoneyTranscations addMoneyTranscations = AddMoneyTranscations();
+  final TextEditingController title = TextEditingController();
+  final TextEditingController amount = TextEditingController();
   bool loadinSgstate = true;
-  String balance='';
-  
+  String balance = '';
+
   void getData() async {
     await Future.delayed(Duration(seconds: 2));
     final data = await addMoneyTranscations.getData();
@@ -23,26 +26,44 @@ class _CardviewState extends State<Cardview> {
     });
   }
 
-void postdata() async {
-  final response = await post(Uri.parse('http://10.0.2.2:3000/transactions'),body: {
-    'title': 'hello',
-    'amount':34,
-    'cashback':34,
-  });
-  print(response.body);
+  void postdata() async {
+    final String enteredTitle = title.text;
+    final double enteredAmount = double.tryParse(amount.text.trim()) ?? 0.0;
 
+    final String date = DateTime.now().toIso8601String();
+    final String id =
+        DateTime.now().millisecondsSinceEpoch.toString(); 
+    final double cashback = enteredAmount * 0.10;
+
+    final Map<String, dynamic> data = {
+      'id': id,
+      'title': enteredTitle,
+      'date': date,
+      'amount': enteredAmount,
+      'cashback': cashback,
+    };
+
+    final response = await http.post(
+      Uri.parse('http://10.0.2.2:3000/transactions'),
+      body: jsonEncode(data),
+    );
+
+    if (response.statusCode == 200) { 
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Transaction added")));
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Failed to add transaction")));
+    }
   }
-
-
 
   @override
   void initState() {
     super.initState();
     getData();
   }
-
-
-
 
   Widget build(BuildContext context) {
     return Container(
@@ -94,63 +115,69 @@ void postdata() async {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   minimumSize: Size(340, 50),
-                  elevation: 0
+                  elevation: 0,
                 ),
-                onPressed: ()=>showDialog(
-                  context: context,
-                   builder: (context)=>AlertDialog(
-                    title: Text('Add the Transcations'),
-                    content: SizedBox(
-                      
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextField(
-                            autofocus: true,
-                            decoration: InputDecoration(
-                              hint: Text("Title"),
+                onPressed:
+                    () => showDialog(
+                      context: context,
+                      builder:
+                          (context) => AlertDialog(
+                            title: Text('Add the Transcations'),
+                            content: SizedBox(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  TextField(
+                                    controller: title,
+                                    autofocus: true,
+                                    decoration: InputDecoration(
+                                      hint: Text("Title"),
+                                    ),
+                                  ),
+                                  TextField(
+                                    controller: amount,
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      hint: Text("Amound"),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          TextField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              hint: Text("Amound"),
-                            ),
-                          ),
 
-                        ],
-                        
-                      ),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Discarded the transcations',
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Text('Cancel'),
+                              ),
+                              
+                              ElevatedButton(
+                                onPressed: postdata,
+                                child: Text('Add'),
+                              ),
+                            ],
+                          ),
                     ),
-                    
-                    actions: [
-                      
-                      TextButton(
-                        onPressed: (){
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Discarded the transcations')));
-                        }, child: Text('Cancel')),
-                        TextButton(
-                        onPressed: (){
-                          postdata(,);
-                          // ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Add the transcations")));
-                        }, child: Text('Add')),
-                        ElevatedButton(
-                          onPressed: postdata, 
-                          child: Text('data')),
-                        
-                    ],
-                   )),
-                child: Text('Add money',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontFamily: 'SpaceGrotesk'
-                ),)),
-               
+                child: Text(
+                  'Add money',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'SpaceGrotesk',
+                  ),
+                ),
+              ),
             ],
-            
           ),
-           
         ],
       ),
     );

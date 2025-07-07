@@ -1,28 +1,55 @@
 
+import 'package:demo_project_1/Pages/Map/widget/map_foolpage1.dart';
+import 'package:demo_project_1/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
-class Screen1page extends StatelessWidget {
-  final String name;
-  const Screen1page({Key? key,required this.name}):super(key: key);
-  
+
+class MapFoodAndStore extends StatefulWidget {
+  const MapFoodAndStore({super.key});
 
   @override
+  State<MapFoodAndStore> createState() => _MapFoodAndStoreState();
+}
+
+class _MapFoodAndStoreState extends State<MapFoodAndStore> {
+  String index = "hello world";
+  @override
   Widget build(BuildContext context) {
+    return MyHomepage();
+  }
+}
+class MyHomepage extends StatefulWidget {
+  const MyHomepage({super.key});
+
+  @override
+  State<MyHomepage> createState() => _MyHomepageState();
+}
+
+class _MyHomepageState extends State<MyHomepage> {
+  //init, didchangedep, build, dispost
+  @override
+  void initState() { //once call 
+    gotologin();
+    super.initState();
+    
+  }
+  @override
+  void didChangeDependencies() { //while building 
+    super.didChangeDependencies();
+    
+  }
+  @override
+  Widget build(BuildContext context) {
+    
     return Scaffold(
-      appBar: AppBar(title: Text(name),),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            children: [
-              Text("Screen 1"),
-              ElevatedButton(onPressed: (){
-                Navigator.of(context).pop();
-              }, child: Text("Go Back"))
-            ],
-          ),
-        ),
-        
-      ),
+      body: Image.asset('assets/images/leaves.jpg'),
     );
+    
+  }
+  //dispose - once to remove from the momory
+  Future <void> gotologin ()async{
+    Future.delayed(Duration(seconds: 3));
+    Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+      return HomeNavigationBar();
+    }));
   }
 }
