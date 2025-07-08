@@ -3,13 +3,8 @@ import 'package:demo_project_1/Pages/Home/widgets/Your_cards_row.dart';
 import 'package:demo_project_1/api/api_transaction_details.dart';
 import 'package:flutter/material.dart';
 
-
-
-
-
 class Homepage1 extends StatefulWidget {
   const Homepage1({super.key});
-
   @override
   State<Homepage1> createState() => _Homepage1State();
 }
@@ -17,8 +12,8 @@ class Homepage1 extends StatefulWidget {
 class _Homepage1State extends State<Homepage1> {
   final BalanceTranscations apiservese = BalanceTranscations();
   bool loadinSgstate = true;
-  List<dynamic> transcations =[];
-  
+  List<dynamic> transcations = [];
+
   void getData() async {
     await Future.delayed(Duration(seconds: 2));
     final data = await apiservese.getdata();
@@ -27,8 +22,6 @@ class _Homepage1State extends State<Homepage1> {
       transcations = data;
     });
   }
-
-
 
   @override
   void initState() {
@@ -43,6 +36,7 @@ class _Homepage1State extends State<Homepage1> {
 
       //APP BAR
       appBar: AppBar(
+        toolbarHeight: 80,
         actions: [
           Container(
             margin: EdgeInsets.fromLTRB(0, 10, 20, 0),
@@ -51,7 +45,7 @@ class _Homepage1State extends State<Homepage1> {
               child: Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.only(left: 4, top: 3),
                     child: const Icon(Icons.notifications_none_outlined),
                   ),
                   Positioned(
@@ -68,13 +62,13 @@ class _Homepage1State extends State<Homepage1> {
                 ],
               ),
             ),
-            width: 50,
+            width: 48,
             height: 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
                 color: const Color.fromARGB(255, 111, 111, 111),
-                width: .3,
+                width: .4,
                 style: BorderStyle.solid,
               ),
             ),
@@ -109,12 +103,12 @@ class _Homepage1State extends State<Homepage1> {
 
             final formateddate = transcation['date'];
             DateTime date = DateTime.parse(formateddate);
-            String day = date.day.toString().padLeft(2,'0');
-            String  month = date.month.toString().padLeft(2,'0');
-            String year = date.year.toString().padLeft(4,'0');
-            String hour = date.hour.toString().padLeft(2,'0');
-            String minute = date.minute.toString().padLeft(2,'0');
-            String datemonth ='$year - $month - $day  $hour : $minute';
+            String day = date.day.toString().padLeft(2, '0');
+            String month = date.month.toString().padLeft(2, '0');
+            String year = date.year.toString().padLeft(4, '0');
+            String hour = date.hour.toString().padLeft(2, '0');
+            String minute = date.minute.toString().padLeft(2, '0');
+            String datemonth = '$year - $month - $day  $hour : $minute';
 
             return Container(
               decoration: BoxDecoration(),
@@ -223,8 +217,18 @@ class Cardsview extends StatelessWidget {
         ),
         ScrolableCards(),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text("Transscation"), Text("See all")],
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              "Transscation",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(width: 50),
+            Text(
+              "See all",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            ),
+          ],
         ),
       ],
     );

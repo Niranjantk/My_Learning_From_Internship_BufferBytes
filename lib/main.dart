@@ -1,3 +1,6 @@
+//import 'package:demo_project_1/Pages/login_page/Screen_login.dart';
+import 'package:demo_project_1/Pages/login_page/widget/screen_splash_login.dart';
+import 'package:demo_project_1/Pages/login_page/screen_login_page_contents.dart';
 import 'package:demo_project_1/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(useMaterial3: true),
 
       debugShowCheckedModeBanner: false,
-      home: HomeNavigationBar(),
+      home: ScreenSplashLogin(),
 
       //MainHomeScreen
       //HomeNavigationBar

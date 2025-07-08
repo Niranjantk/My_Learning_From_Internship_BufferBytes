@@ -1,4 +1,6 @@
 
+//import 'package:demo_project_1/Pages/History/elements/addmoney_page_addmoney_optrion.dart';
+//import 'package:demo_project_1/Pages/History/elements/small_scroble_cards.dart';
 import 'package:demo_project_1/Pages/History/widgets/addmoney_page_addmoney_optrion.dart';
 import 'package:demo_project_1/Pages/History/widgets/small_scroble_cards.dart';
 
@@ -18,7 +20,7 @@ class MapPage extends StatelessWidget {
           child: Center(
             child: const Text(
               "Add Money ",
-            
+
               style: TextStyle(
                 fontFamily: "SpaceGrotesk",
                 fontWeight: FontWeight.w900,
@@ -60,8 +62,8 @@ class MapPage extends StatelessWidget {
             Container(
               width: 400,
               //height: 700,
-              
-                
+
+
                 child: Column(
                   children: [
                     AddmoneyPageAddmoneyOptrion(),
@@ -75,7 +77,7 @@ class MapPage extends StatelessWidget {
                     AddmoneyPageAddmoneyOptrion(),
                   ],
                 ),
-              
+
             ),
           ],
         ),
