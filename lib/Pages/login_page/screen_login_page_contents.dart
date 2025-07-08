@@ -1,4 +1,10 @@
+import 'dart:convert';
+
+import 'package:demo_project_1/models/authentication_models.dart';
+import 'package:demo_project_1/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 
 class LoginPageContents extends StatefulWidget {
   const LoginPageContents({super.key});
@@ -6,9 +12,36 @@ class LoginPageContents extends StatefulWidget {
   @override
   State<LoginPageContents> createState() => _LoginPageContentsState();
 }
+final usernameController = TextEditingController();
+    final passwordController = TextEditingController();
 
 class _LoginPageContentsState extends State<LoginPageContents> {
-  void userothentication(BuildContext context) {}
+  void userothentication(BuildContext context) {
+
+
+    Future<Post?> loginUser({
+  required String username,
+  required String password,
+}) async {
+  final response = await http.post(
+    Uri.parse('https://dummyjson.com/auth/login'),
+    headers: {'Content-Type': 'application/json'},
+    body: jsonEncode({
+      'username': username,
+      'password': password,
+      'expiresInMins': 30,
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    final data = jsonDecode(response.body);
+    return Post.fromJson(data);
+  } else {
+    throw Exception('Login failed: ${response.body}');
+  }
+}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +62,7 @@ class _LoginPageContentsState extends State<LoginPageContents> {
                   children: [
                     SizedBox(height: 25),
                     TextFormField(
-                      //controller: usernamecontroler,
+                      controller: usernameController,
                       decoration: InputDecoration(
                         hint: Text('User name'),
                         border: OutlineInputBorder(
@@ -39,7 +72,7 @@ class _LoginPageContentsState extends State<LoginPageContents> {
                     ),
                     SizedBox(height: 20),
                     TextFormField(
-                      //controller: passwordcontroler,
+                      controller: passwordController,
                       decoration: InputDecoration(
                         hint: Text('Password'),
                         border: OutlineInputBorder(
@@ -63,11 +96,24 @@ class _LoginPageContentsState extends State<LoginPageContents> {
                   elevation: 10,
                 ),
 
-                onPressed: () {
-                  final state =
-                      context
-                          .findAncestorStateOfType<_LoginPageContentsState>();
-                  state?.userothentication(context);
+                onPressed: () async{
+                  try {
+      final user = await loginUser(
+        username: usernameController.text,
+        password: passwordController.text,
+      );
+
+      if (user != null) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => HomeNavigationBar()),
+        );
+      }
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Login failed')),
+      );
+    }
+
                 },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 70),
