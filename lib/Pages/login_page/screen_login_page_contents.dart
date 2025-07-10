@@ -98,22 +98,22 @@ class _LoginPageContentsState extends State<LoginPageContents> {
                 ),
 
                 onPressed: () async{
-                  try {
-      final user = await loginUser(
-        username: usernameController.text,
-        password: passwordController.text,
-      );
+    //               try {
+    //   final user = await loginUser(
+    //     username: usernameController.text,
+    //     password: passwordController.text,
+    //   );
 
-      if (user != null) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => HomeNavigationBar()),
-        );
-      }
-    } catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login failed')),
-      );
-    }
+    //   if (user != null) {
+    //     Navigator.of(context).pushReplacement(
+    //       MaterialPageRoute(builder: (_) => HomeNavigationBar()),
+    //     );
+    //   }
+    // } catch (error) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(content: Text('Login failed')),
+    //   );
+    // }
 
                 },
                 child: Padding(

@@ -44,3 +44,50 @@ class AddMoneyTranscations {
 }
 
 //ADD MONEY BUTTON TO ADD DATA
+
+class MoneyAppUsers{
+  //base url
+  String baseUrl = 'http://10.0.2.2:3000/';
+  String userbaseUrl = '';
+  //get
+  getAllCompanies() async{
+    try{
+      var response = http.get(Uri.parse(baseUrl+""));
+      
+    }
+    catch(e){
+      print("Error occured ${e.toString()}");
+    }
+  }
+  //post
+  postAllCompanies() async{
+    try{
+
+    }
+    catch(e){
+      print("Error occured ${e.toString()}");
+    }
+  }
+
+  //put
+  putAllCompanies() async{
+    try{
+
+    }
+    catch(e){
+      print("Error occured ${e.toString()}");
+    }
+  }
+
+  //delete
+  deleteAllComanies() async{
+    try{
+
+    }
+    catch(e){
+      print("Error occured ${e.toString()}");
+    }
+
+
+}
+}

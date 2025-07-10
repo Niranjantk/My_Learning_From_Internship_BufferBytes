@@ -1,3 +1,5 @@
+//MODELS
+
 class Post {
   final int id;
   final String username;
@@ -8,7 +10,7 @@ class Post {
   final String image;
   final String accessToken;
   final String refreshToken;
-
+//CONSTRUCTURE
   Post({
     required this.id,
     required this.username,
@@ -20,7 +22,7 @@ class Post {
     required this.accessToken,
     required this.refreshToken,
   });
-
+//FROM THE JSON FILE DATA
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
       id: json['id'],
@@ -34,7 +36,7 @@ class Post {
       refreshToken: json['refreshToken'],
     );
   }
-
+  //TO JSON FILE DATA
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -46,6 +48,7 @@ class Post {
       'image': image,
       'accessToken': accessToken,
       'refreshToken': refreshToken,
+      
     };
   }
 }
