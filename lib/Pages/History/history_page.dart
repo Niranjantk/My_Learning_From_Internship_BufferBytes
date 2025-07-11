@@ -1,7 +1,3 @@
-
-//import 'package:demo_project_1/Pages/History/elements/addmoney_page_addmoney_optrion.dart';
-//import 'package:demo_project_1/Pages/History/elements/small_scroble_cards.dart';
-import 'package:demo_project_1/Pages/History/widgets/addmoney_page_addmoney_optrion.dart';
 import 'package:demo_project_1/Pages/History/widgets/small_scroble_cards.dart';
 
 import 'package:flutter/material.dart';
@@ -31,27 +27,13 @@ class MapPage extends StatelessWidget {
 
         backgroundColor: const Color(0xFFF2F3F5),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 200),
-                child: const Text(
-                  "Selece card",
-                  style: TextStyle(
-                    fontFamily: 'SpaceGrotesk',
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            Container(child: SmallScrolableCards()),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(10, 0, 70, 20),
+      body: Column(
+        children: [
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.only(right: 200),
               child: const Text(
-                "Add Money to Neobank",
+                "Selece card",
                 style: TextStyle(
                   fontFamily: 'SpaceGrotesk',
                   fontSize: 25,
@@ -59,28 +41,13 @@ class MapPage extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              width: 400,
-              //height: 700,
+          ),
+          // Container(child:
+          SmallScrolableCards(),
 
 
-                child: Column(
-                  children: [
-                    AddmoneyPageAddmoneyOptrion(),
-                    AddmoneyPageAddmoneyOptrion(),
-                    AddmoneyPageAddmoneyOptrion(),
-                    AddmoneyPageAddmoneyOptrion(),
-                    AddmoneyPageAddmoneyOptrion(),
-                    AddmoneyPageAddmoneyOptrion(),
-                    AddmoneyPageAddmoneyOptrion(),
-                    AddmoneyPageAddmoneyOptrion(),
-                    AddmoneyPageAddmoneyOptrion(),
-                  ],
-                ),
+        ],
 
-            ),
-          ],
-        ),
       ),
     );
   }

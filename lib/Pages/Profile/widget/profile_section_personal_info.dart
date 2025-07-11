@@ -1,13 +1,26 @@
+import 'package:demo_project_1/Pages/login_page/screen_login_page_contents.dart';
+import 'package:demo_project_1/api/api_services.dart';
+import 'package:demo_project_1/models/models_json.dart';
 import 'package:flutter/material.dart';
 
-class ProfileSectionPersonalInfo extends StatelessWidget {
+class ProfileSectionPersonalInfo extends StatefulWidget {
+  //final String accessToken;
   const ProfileSectionPersonalInfo({super.key});
+
+  @override
+  State<ProfileSectionPersonalInfo> createState() =>
+      _ProfileSectionPersonalInfoState();
+}
+
+class _ProfileSectionPersonalInfoState
+    extends State<ProfileSectionPersonalInfo> {
+  late Future<LoginModel?> userData;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 370,
-      height: 400,
+
       margin: EdgeInsets.only(top: 30),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 255, 255, 255),
@@ -43,102 +56,71 @@ class ProfileSectionPersonalInfo extends StatelessWidget {
               ),
             ],
           ),
-          Onecontainerofpersonaldetainls(),
-          Onecontainerofpersonaldetainls(),
-          Onecontainerofpersonaldetainls(),
-          Onecontainerofpersonaldetainls(),
-          Onecontainerofpersonaldetainls(),
+          PersonInfo(user: loginmodel),
         ],
       ),
     );
   }
 }
 
-class Onecontainerofpersonaldetainls extends StatelessWidget {
-  const Onecontainerofpersonaldetainls({super.key});
+class PersonInfo extends StatefulWidget {
+  final LoginModel user;
+  const PersonInfo({super.key, required this.user});
+
+  @override
+  State<PersonInfo> createState() => _PersonInfoState();
+}
+
+class _PersonInfoState extends State<PersonInfo> {
+  LoginModel? user;
+  @override
+  void initState() {
+    super.initState();
+    loadUserProfile();
+  }
+
+  Future<void> loadUserProfile() async {
+    final fetchedUser = await AuthServices().fetchUserProfile();
+    setState(() {
+      user = fetchedUser;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (user == null) {
+      return Center(child: CircularProgressIndicator());
+    }
     return Container(
-      width: 330,
-      height: 60,
-
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const Icon(Icons.face_2_outlined, size: 40),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                //name heading
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 30, 0),
-                  child: const Text(
-                    "Name",
-                    style: TextStyle(fontFamily: 'SpaceGrotesk', fontSize: 14),
-                  ),
-                ),
-
-                //name
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
-                  child: const Text(
-                    'Terry Melton',
-                    style: TextStyle(
-                      fontFamily: 'SpaceGrotesk',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "${user!.firstName}${user!.lastName}",
+              style: TextStyle(fontSize: 28, fontFamily: ''),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Accountinfomation extends StatelessWidget {
-  const Accountinfomation({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 370,
-      height: 400,
-      margin: EdgeInsets.only(top: 30),
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 255, 255),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 0, 10),
-                child: const Text(
-                  "Personal info",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'SpaceGrotesk',
-                    fontWeight: FontWeight.bold,
+            Text(
+              "${user!.email}",
+              style: TextStyle(fontSize: 20, fontFamily: ''),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(
+                    user!.gender!.toLowerCase() == 'male'
+                        ? Icons.mail
+                        : Icons.female,
                   ),
-                ),
+                  Text("${user!.gender}"),
+                ],
               ),
-            ],
-          ),
-          Onecontainerofpersonaldetainls(),
-          Onecontainerofpersonaldetainls(),
-          Onecontainerofpersonaldetainls(),
-          Onecontainerofpersonaldetainls(),
-          Onecontainerofpersonaldetainls(),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

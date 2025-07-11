@@ -112,34 +112,6 @@ class Imagesalign extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
-
-            // Padding(
-
-            //   padding: const EdgeInsets.only(left: 100),
-            //   child: Container(
-            //     width: 100,
-            //     height: 50,
-            //     decoration: BoxDecoration(
-            //       color: const Color.fromARGB(255, 223, 223, 223),
-            //       borderRadius: BorderRadius.circular(20)
-            //     ),
-
-            //       child: Padding(
-            //         padding: const EdgeInsets.only(left: 10),
-            //         child: Row(
-            //           children: [
-            //             const Icon(Icons.visibility_outlined),
-            //             const Text('Details',
-            //             style: TextStyle(
-            //               fontFamily: "SpaceGrotesk",
-            //               fontWeight: FontWeight.bold,
-
-            //             ),),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //                        ),
           ],
         ),
       ],

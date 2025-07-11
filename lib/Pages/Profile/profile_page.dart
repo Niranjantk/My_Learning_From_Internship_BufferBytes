@@ -1,19 +1,52 @@
 import 'package:demo_project_1/Pages/Profile/widget/profile_section_personal_info.dart';
+import 'package:demo_project_1/Pages/login_page/screen_login_page_contents.dart';
+import 'package:demo_project_1/api/api_services.dart';
+
+import 'package:demo_project_1/models/models_json.dart';
 import 'package:flutter/material.dart';
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+
+
+class ProfilePage extends StatefulWidget {
+  LoginModel currentUserinfo = LoginModel();
+  ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  LoginModel? user;
+  @override
+  void initState() {
+    super.initState();
+    loadUserProfile();
+  }
+
+  Future<void> loadUserProfile() async {
+    final fetchedUser = await AuthServices().fetchUserProfile();
+    setState(() {
+      user = fetchedUser;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (user == null) {
+      return Text('data');
+    }
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 209, 209, 209),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 209, 209, 209),
-      title: Center(child: const Text("Profile",
-      style:TextStyle(
-        fontFamily: 'SpaceGrotesk',
-        fontWeight: FontWeight.bold,
-      ),)),
+        title: Center(
+          child: const Text(
+            "Profile",
+            style: TextStyle(
+              fontFamily: 'SpaceGrotesk',
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -25,22 +58,52 @@ class ProfilePage extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: const Color.fromARGB(255, 142, 142, 142),
-                  border: Border.all(color: const Color.fromARGB(255, 224, 224, 224),width: 5,style: BorderStyle.solid,)
+                  image: DecorationImage(image: NetworkImage('${user!.image}')),
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 224, 224, 224),
+                    width: 5,
+                    style: BorderStyle.solid,
+                  ),
                 ),
-                child:Padding(
+                child: Padding(
                   padding: const EdgeInsets.fromLTRB(150, 150, 0, 0),
-                  child: Container(child: const Icon(Icons.edit),
-                  width: 70,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromARGB(255, 255, 255, 255)
-                  ),),
+                  child: Container(
+                    child: const Icon(Icons.edit),
+                    width: 70,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                  ),
                 ),
               ),
             ),
             ProfileSectionPersonalInfo(),
-            Accountinfomation(),
+            Padding(
+              padding: const EdgeInsets.only(top: 250, left: 250),
+              child: SizedBox(
+                width: 100,
+                child: FloatingActionButton(
+                  onPressed: () {
+                    AuthServices().logout();
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginPageContents(),
+                      ),
+                      (route) => false,
+                    );
+                  },
+                  backgroundColor: Colors.blueGrey,
+                  foregroundColor: Colors.white,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [Icon(Icons.logout), Text("Logout")],
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
