@@ -1,6 +1,5 @@
 import 'package:demo_project_1/Pages/Home/widgets/appBar_C.dart';
 import 'package:demo_project_1/Pages/Home/widgets/heading.dart';
-import 'package:demo_project_1/Pages/login_page/screen_login_page_contents.dart';
 import 'package:demo_project_1/api/api_services.dart';
 import 'package:flutter/material.dart';
 
@@ -245,27 +244,6 @@ class _Homepage1State extends State<Homepage1> {
 
         itemCount: transcations.length + 1,
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.of(context).pushAndRemoveUntil(
-      //       MaterialPageRoute(builder: (context) => LoginPageContents()),
-      //       (route) => false,
-      //     );
-      //   },
-      //   child: Row(
-      //     children: [
-      //       Icon(Icons.logout),
-
-      //       Text(
-      //         "logout",
-      //         style: TextStyle(
-      //           fontFamily: 'SpaceGrotesk',
-      //           fontWeight: FontWeight.bold,
-      //         ),
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

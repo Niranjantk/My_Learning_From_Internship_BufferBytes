@@ -5,7 +5,6 @@ import 'package:demo_project_1/api/api_services.dart';
 import 'package:demo_project_1/models/models_json.dart';
 import 'package:flutter/material.dart';
 
-
 class ProfilePage extends StatefulWidget {
   LoginModel currentUserinfo = LoginModel();
   ProfilePage({super.key});
@@ -32,7 +31,27 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     if (user == null) {
-      return Text('data');
+      return Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            ElevatedButton(onPressed: () {}, child: Text('Retry')),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                AuthServices().logout();
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPageContents()),
+                  (route) => false,
+                );
+              },
+              child: Text('Logout'),
+            ),
+          ],
+        ),
+      );
     }
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 209, 209, 209),

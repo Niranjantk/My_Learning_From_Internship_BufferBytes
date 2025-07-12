@@ -1,3 +1,4 @@
+import 'package:demo_project_1/Pages/Home/notifications/notifications.dart';
 import 'package:flutter/material.dart';
 
 //====================================================================
@@ -38,7 +39,12 @@ class _AppBarIconsState extends State<AppBarIcons> {
       margin: EdgeInsets.fromLTRB(0, 10, 20, 0),
 
       child: IconButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => Notifications()),
+          );
+        },
         icon: Badge(
           label: Text('1'),
           child: Icon(

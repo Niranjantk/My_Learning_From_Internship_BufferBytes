@@ -1,3 +1,4 @@
+import 'package:demo_project_1/Pages/Home/widgets/add_new_Card.dart';
 import 'package:flutter/material.dart';
 
 class ScrolableCards extends StatelessWidget {
@@ -5,104 +6,124 @@ class ScrolableCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Column(
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [Text('data')],
-          ),
-          // Padding(
-          //   padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
-          //   child: const Text(
-          //     "Your cards",
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
+              child: const Text(
+                "Your cards",
 
-          //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
-          //   ),
-          // ),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
+              ),
+            ),
 
-          // const Icon(Icons.add),
-          // Padding(
-          //   padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
-          //   child: const Text(
-          //     "New card",
-          //     style: TextStyle(
-          //       fontWeight: FontWeight.w800,
-          //       fontSize: 17,
-          //       fontFamily: 'SpaceGrotesk',
-          //     ),
-          //   ),
-          // ),
+            Row(
+              children: [
+                const Icon(Icons.add),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
 
-          //first
-          Row(
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AddNewCard(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "New card",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: 17,
+                        fontFamily: 'SpaceGrotesk',
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Column(
             children: [
-              Container(
-                margin: EdgeInsets.fromLTRB(24, 25, 15, 30),
-                width: 320,
-                height: 200,
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.fromLTRB(24, 25, 15, 30),
+                    width: 320,
+                    height: 200,
 
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(26),
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/card22.jpeg"),
-                    fit: BoxFit.cover,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/card22.jpeg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Imagesalign(),
                   ),
-                ),
-                child: Imagesalign(),
-              ),
 
-              //secondc
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
-                width: 320,
-                height: 200,
+                  //secondc
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
+                    width: 320,
+                    height: 200,
 
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(26),
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/card2.jpeg"),
-                    fit: BoxFit.cover,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/card2.jpeg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Imagesalign(),
                   ),
-                ),
-                child: Imagesalign(),
-              ),
-              //third
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
-                width: 320,
-                height: 200,
+                  //third
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
+                    width: 320,
+                    height: 200,
 
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(26),
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/card3.jpeg"),
-                    fit: BoxFit.cover,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/card3.jpeg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Imagesalign(),
                   ),
-                ),
-                child: Imagesalign(),
-              ),
-              //fourth
-              Container(
-                margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
-                width: 320,
-                height: 200,
+                  //fourth
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
+                    width: 320,
+                    height: 200,
 
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(26),
-                  image: DecorationImage(
-                    image: AssetImage("assets/images/card4.jpeg"),
-                    fit: BoxFit.cover,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(26),
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/card4.jpeg"),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    child: Imagesalign(),
                   ),
-                ),
-                child: Imagesalign(),
+                  Text('data'),
+                ],
               ),
             ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -152,31 +173,58 @@ class Imagesalign extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.fromLTRB(85, 25, 0, 0),
-              child: Container(
-                width: 100,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  borderRadius: BorderRadius.circular(17),
-                ),
+              child: InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("Card Details"),
 
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Icon(Icons.visibility_outlined),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 13),
-                        child: const Text(
-                          'Details',
-                          style: TextStyle(
-                            fontFamily: "SpaceGrotesk",
-                            fontWeight: FontWeight.bold,
+                        content: const Text(
+                          "Card Number: 1234 5678 9012 3456\nExpiry Date: 12/25\nCVV: 123",
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text("Close"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Container(
+
+                  width: 100,
+                  height: 50,
+                  
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                    borderRadius: BorderRadius.circular(17),
+
+                  ),
+
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Icon(Icons.visibility_outlined),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 13),
+                          child: const Text(
+                            'Details',
+                            style: TextStyle(
+                              fontFamily: "SpaceGrotesk",
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

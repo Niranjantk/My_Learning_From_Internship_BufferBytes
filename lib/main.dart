@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'sample app',
       theme: ThemeData(useMaterial3: true),
+    
 
       debugShowCheckedModeBanner: false,
       home: ScreenSplashLogin(),

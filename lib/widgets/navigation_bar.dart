@@ -1,7 +1,6 @@
 import 'package:demo_project_1/Pages/History/history_page.dart';
 import 'package:demo_project_1/Pages/Home/home_page.dart';
 import 'package:demo_project_1/Pages/Map/map_page.dart';
-
 import 'package:demo_project_1/Pages/Profile/profile_page.dart';
 import 'package:demo_project_1/Pages/Settings/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,7 @@ class _NavigationBarState extends State<HomeNavigationBar> {
     Homepage1(), RecordOfTrancations(), MapPage(), SteeingPage(), ProfilePage(),
     //MapFoodAndStore(),
   ];
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

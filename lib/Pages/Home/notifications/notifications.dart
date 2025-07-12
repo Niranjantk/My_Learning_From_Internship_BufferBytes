@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class RecordOfTrancations extends StatefulWidget {
-  const RecordOfTrancations({super.key});
+class Notifications extends StatelessWidget {
+  const Notifications({super.key});
 
-  @override
-  State<RecordOfTrancations> createState() => _RecordOfTrancationsState();
-}
-
-class _RecordOfTrancationsState extends State<RecordOfTrancations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +11,7 @@ class _RecordOfTrancationsState extends State<RecordOfTrancations> {
         backgroundColor: const Color.fromARGB(255, 209, 209, 209),
         title: Center(
           child: const Text(
-            "History",
+            "Notifications",
             style: TextStyle(
               fontFamily: 'SpaceGrotesk',
               fontWeight: FontWeight.bold,
@@ -24,7 +19,7 @@ class _RecordOfTrancationsState extends State<RecordOfTrancations> {
           ),
         ),
       ),
-
+      body: Center(child: Text("No notifications yet!")),
     );
   }
 }

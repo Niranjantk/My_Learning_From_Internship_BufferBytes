@@ -18,7 +18,6 @@ class _CardviewState extends State<AddMoneyButtonClick> {
   String balance = '';
 
   void getData() async {
-    
     final data = await addMoneyTranscations.getData();
     setState(() {
       loadinSgstate = false;
@@ -31,8 +30,7 @@ class _CardviewState extends State<AddMoneyButtonClick> {
     final double enteredAmount = double.tryParse(amount.text.trim()) ?? 0.0;
 
     final String date = DateTime.now().toIso8601String();
-    final String id =
-        DateTime.now().millisecondsSinceEpoch.toString();
+    final String id = DateTime.now().millisecondsSinceEpoch.toString();
     final double cashback = enteredAmount * 0.10;
 
     final Map<String, dynamic> data = {
@@ -65,6 +63,7 @@ class _CardviewState extends State<AddMoneyButtonClick> {
     getData();
   }
 
+  bool passwordVisibility = false;
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
@@ -97,14 +96,27 @@ class _CardviewState extends State<AddMoneyButtonClick> {
                 padding: const EdgeInsets.fromLTRB(20, 0, 40, 10),
 
                 child: Text(
-                  balance,
+                  !passwordVisibility ? balance : '****',
                   style: TextStyle(fontSize: 48, fontWeight: FontWeight.w900),
                 ),
               ),
 
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 30, 10),
-                child: const Icon(Icons.visibility_off_outlined),
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      passwordVisibility = !passwordVisibility;
+                    });
+                  },
+                  icon: Icon(
+                    passwordVisibility
+                        ? Icons.visibility_off_outlined
+                        : Icons.visibility_outlined,
+                    size: 40,
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ],
           ),
