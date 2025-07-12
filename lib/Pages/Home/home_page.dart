@@ -1,5 +1,6 @@
 import 'package:demo_project_1/Pages/Home/widgets/appBar_C.dart';
 import 'package:demo_project_1/Pages/Home/widgets/heading.dart';
+import 'package:demo_project_1/Pages/login_page/screen_login_page_contents.dart';
 import 'package:demo_project_1/api/api_services.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,9 @@ class _Homepage1State extends State<Homepage1> {
   final BalanceTranscations apiservese = BalanceTranscations();
   bool loadinSgstate = true;
   List<dynamic> transcations = [];
-  TextEditingController title = TextEditingController();
-  TextEditingController amount = TextEditingController();
-  TextEditingController cashback = TextEditingController();
+  TextEditingController titlecontrolder = TextEditingController();
+  TextEditingController amountcontrolder = TextEditingController();
+  TextEditingController cashbackcontrolder = TextEditingController();
 
   void getData() async {
     await Future.delayed(Duration(seconds: 2));
@@ -29,9 +30,11 @@ class _Homepage1State extends State<Homepage1> {
   @override
   void initState() {
     super.initState();
+
     getData();
   }
-//==================================================================================
+
+  //==================================================================================
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF2F3F5),
@@ -44,7 +47,7 @@ class _Homepage1State extends State<Homepage1> {
           children: [AppBarText()],
         ),
       ),
-//==================================================================================
+      //==================================================================================
       body: ListView.separated(
         separatorBuilder: (context, index) => Divider(color: Color(0xFFF2F3F5)),
         itemBuilder: (context, index) {
@@ -64,6 +67,10 @@ class _Homepage1State extends State<Homepage1> {
 
             return InkWell(
               onTap: () {
+                titlecontrolder.text = transcation['title'];
+                amountcontrolder.text = transcation['amount'].toString();
+                cashbackcontrolder.text = transcation['cashback'].toString();
+
                 showDialog(
                   context: context,
                   builder:
@@ -84,6 +91,7 @@ class _Homepage1State extends State<Homepage1> {
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
+                              setState(() {});
                               showDialog(
                                 context: context,
                                 builder: (context) {
@@ -94,39 +102,60 @@ class _Homepage1State extends State<Homepage1> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           TextField(
-                                            controller: title,
+                                            decoration: InputDecoration(
+                                              labelText: 'Transaction Title',
+                                            ),
+                                            controller: titlecontrolder,
                                             autofocus: true,
-                                            decoration: InputDecoration(
-                                              hintText:
-                                                  "${transcation['title']}",
-                                            ),
                                           ),
                                           TextField(
-                                            controller: TextEditingController(
-                                              text:
-                                                  transcation['amount']
-                                                      .toString(),
-                                            ),
-                                            keyboardType: TextInputType.number,
                                             decoration: InputDecoration(
-                                              hintText:
-                                                  "${transcation['amount']}",
+                                              labelText: 'Amount',
                                             ),
+                                            controller: amountcontrolder,
+                                            keyboardType: TextInputType.number,
                                           ),
                                           TextField(
-                                            controller: cashback,
-                                            keyboardType: TextInputType.number,
                                             decoration: InputDecoration(
-                                              hintText:
-                                                  "${transcation['cashback']}",
+                                              labelText: 'Cashback',
                                             ),
+                                            controller: cashbackcontrolder,
+                                            keyboardType: TextInputType.number,
                                           ),
                                         ],
                                       ),
                                     ),
                                     actions: [
                                       TextButton(
-                                        onPressed: () {
+                                        onPressed: () async {
+                                          final id = transcation['id'];
+                                          final title = titlecontrolder.text;
+                                          final date =
+                                              DateTime.now().toIso8601String();
+                                          final amount =
+                                              double.tryParse(
+                                                amountcontrolder.text,
+                                              ) ??
+                                              0.0;
+                                          final cashback =
+                                              double.tryParse(
+                                                cashbackcontrolder.text,
+                                              ) ??
+                                              0.0;
+                                          PutTranscations putTranscations =
+                                              PutTranscations();
+                                          await putTranscations.putdata(
+                                            id,
+                                            title,
+                                            date,
+                                            amount,
+                                            cashback,
+                                          );
+                                          getData(); // Refresh the data after editing
+                                          titlecontrolder.clear();
+                                          amountcontrolder.clear();
+                                          cashbackcontrolder.clear();
+
                                           // Handle edit logic here
                                           Navigator.of(context).pop();
                                         },
@@ -216,6 +245,27 @@ class _Homepage1State extends State<Homepage1> {
 
         itemCount: transcations.length + 1,
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.of(context).pushAndRemoveUntil(
+      //       MaterialPageRoute(builder: (context) => LoginPageContents()),
+      //       (route) => false,
+      //     );
+      //   },
+      //   child: Row(
+      //     children: [
+      //       Icon(Icons.logout),
+
+      //       Text(
+      //         "logout",
+      //         style: TextStyle(
+      //           fontFamily: 'SpaceGrotesk',
+      //           fontWeight: FontWeight.bold,
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }

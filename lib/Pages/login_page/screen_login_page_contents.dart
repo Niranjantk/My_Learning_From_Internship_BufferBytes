@@ -4,7 +4,6 @@ import 'package:demo_project_1/models/models_json.dart';
 import 'package:demo_project_1/widgets/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-
 class LoginPageContents extends StatefulWidget {
   const LoginPageContents({super.key});
 
@@ -59,6 +58,7 @@ class _LoginPageContentsState extends State<LoginPageContents> {
                       ),
                       SizedBox(height: 20),
                       TextFormField(
+                        obscureText: true,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Enter a valid password';

@@ -13,31 +13,7 @@ class Cardsview extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
-              child: const Text(
-                "Your cards",
-
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
-              ),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                const Icon(Icons.add),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
-                  child: const Text(
-                    "New card",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 17,
-                      fontFamily: 'SpaceGrotesk',
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            
           ],
         ),
         ScrolableCards(),

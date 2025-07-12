@@ -24,21 +24,26 @@ class BalanceTranscations {
   }
 }
 
-//POST TRANSACTION DETAILS
-class PostTranscations {
-  Future<void> postData(Map<String, dynamic> data) async {
+//PUT TRANSACTION DETAILS
+class PutTranscations {
+  Future<void> putdata(String id, String title,String date, double amount, double cashback) async {
     try {
-      final response = await http.post(
-        Uri.parse('http://192.168.1.67:3000/transactions'),
+      final response = await http.put(
+        Uri.parse('http://192.168.1.67:3000/transactions/$id'),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(data),
+
+        body: jsonEncode(<String, dynamic>{
+          'title': title,
+          'amount': amount,
+          'cashback': cashback,
+          'date': date,
+        }),
       );
       if (response.statusCode != 200) {
-        throw Exception('Failed to post transaction');
+        throw Exception("Failed to update transaction");
       }
     } catch (e) {
-      print("Error posting transaction: $e");
-      throw Exception('Failed to post transaction');
+      print("Error updating transaction: $e");
     }
   }
 }
@@ -64,7 +69,6 @@ class AddMoneyTranscations {
     }
   }
 }
-
 
 class AuthServices {
   final client = http.Client();
@@ -97,47 +101,43 @@ class AuthServices {
     return LoginModel();
   }
 
-  Future <LoginModel?> fetchUserProfile() async{
-
-    final pref =await SharedPreferences.getInstance();
+  Future<LoginModel?> fetchUserProfile() async {
+    final pref = await SharedPreferences.getInstance();
     final token = pref.getString('token');
-    try{
+    try {
+      final responst = await http.get(
+        Uri.parse('https://dummyjson.com/auth/me'),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-type': 'application/json',
+        },
+      );
 
-      final responst = await http.get(Uri.parse('https://dummyjson.com/auth/me'),
-      headers: {
-        'Authorization':'Bearer $token',
-        'Content-type' : 'application/json',
-      },);
-
-      if(responst.statusCode == 200){
+      if (responst.statusCode == 200) {
         final result = jsonDecode(responst.body);
         return LoginModel.fromJson(result);
-
-      }
-      else{
+      } else {
         print(responst.body);
         print("Error");
       }
-    }catch(e){
+    } catch (e) {
       print("Error again");
-
     }
     return null;
   }
+
   Future<LoginModel?> getSavedUser() async {
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  final userString = prefs.getString('user');
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final userString = prefs.getString('user');
 
-  if (userString == null) return null;
+    if (userString == null) return null;
 
-  final userMap = jsonDecode(userString);
-  return LoginModel.fromJson(userMap);
-}
+    final userMap = jsonDecode(userString);
+    return LoginModel.fromJson(userMap);
+  }
+
   Future<void> logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('token');
-
   }
-
-
 }

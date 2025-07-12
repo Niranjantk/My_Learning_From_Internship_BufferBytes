@@ -7,69 +7,99 @@ class ScrolableCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Column(
         children: [
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [Text('data')],
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
+          //   child: const Text(
+          //     "Your cards",
+
+          //     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27),
+          //   ),
+          // ),
+
+          // const Icon(Icons.add),
+          // Padding(
+          //   padding: const EdgeInsets.fromLTRB(0, 0, 27, 0),
+          //   child: const Text(
+          //     "New card",
+          //     style: TextStyle(
+          //       fontWeight: FontWeight.w800,
+          //       fontSize: 17,
+          //       fontFamily: 'SpaceGrotesk',
+          //     ),
+          //   ),
+          // ),
+
           //first
-          Container(
-            margin: EdgeInsets.fromLTRB(24, 25, 15, 30),
-            width: 320,
-            height: 200,
+          Row(
+            children: [
+              Container(
+                margin: EdgeInsets.fromLTRB(24, 25, 15, 30),
+                width: 320,
+                height: 200,
 
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(26),
-              image: DecorationImage(
-                image: AssetImage("assets/images/card22.jpeg"),
-                fit: BoxFit.cover,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(26),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/card22.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Imagesalign(),
               ),
-            ),
-            child: Imagesalign(),
-          ),
 
-          //secondc
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
-            width: 320,
-            height: 200,
+              //secondc
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
+                width: 320,
+                height: 200,
 
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(26),
-              image: DecorationImage(
-                image: AssetImage("assets/images/card2.jpeg"),
-                fit: BoxFit.cover,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(26),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/card2.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Imagesalign(),
               ),
-            ),
-            child: Imagesalign(),
-          ),
-          //third
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
-            width: 320,
-            height: 200,
+              //third
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
+                width: 320,
+                height: 200,
 
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(26),
-              image: DecorationImage(
-                image: AssetImage("assets/images/card3.jpeg"),
-                fit: BoxFit.cover,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(26),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/card3.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Imagesalign(),
               ),
-            ),
-            child: Imagesalign(),
-          ),
-          //fourth
-          Container(
-            margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
-            width: 320,
-            height: 200,
+              //fourth
+              Container(
+                margin: EdgeInsets.fromLTRB(0, 24, 15, 30),
+                width: 320,
+                height: 200,
 
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(26),
-              image: DecorationImage(
-                image: AssetImage("assets/images/card4.jpeg"),
-                fit: BoxFit.cover,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(26),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/card4.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Imagesalign(),
               ),
-            ),
-            child: Imagesalign(),
+            ],
           ),
         ],
       ),
