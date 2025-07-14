@@ -1,6 +1,6 @@
 import 'package:demo_project_1/Pages/Home/widgets/appBar_C.dart';
-import 'package:demo_project_1/Pages/Home/widgets/heading.dart';
-import 'package:demo_project_1/api/api_services.dart';
+import 'package:demo_project_1/Pages/Home/widgets/head_lines.dart';
+import 'package:demo_project_1/Services/api_services.dart';
 import 'package:flutter/material.dart';
 
 class Homepage1 extends StatefulWidget {
@@ -18,7 +18,7 @@ class _Homepage1State extends State<Homepage1> {
   TextEditingController cashbackcontrolder = TextEditingController();
 
   void getData() async {
-    await Future.delayed(Duration(seconds: 2));
+    //await Future.delayed(Duration(seconds: 2));
     final data = await apiservese.getdata();
     setState(() {
       loadinSgstate = false;
@@ -48,7 +48,8 @@ class _Homepage1State extends State<Homepage1> {
       ),
       //==================================================================================
       body: ListView.separated(
-        separatorBuilder: (context, index) => Divider(color: Color(0xFFF2F3F5)),
+        separatorBuilder:
+            (context, index) => Divider(color: Color.fromARGB(255, 0, 0, 0)),
         itemBuilder: (context, index) {
           if (index == 0) {
             return Cardsview();

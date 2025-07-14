@@ -1,6 +1,6 @@
 import 'package:demo_project_1/Pages/Home/widgets/debit_Cards.dart';
-import 'package:demo_project_1/Pages/Home/widgets/balanceShowAddExpence.dart';
-import 'package:demo_project_1/Pages/Map/map_page.dart';
+import 'package:demo_project_1/Pages/Home/widgets/balance_show_app_expence.dart';
+import 'package:demo_project_1/Pages/Map/screen_map.dart';
 import 'package:flutter/material.dart';
 
 class Cardsview extends StatelessWidget {

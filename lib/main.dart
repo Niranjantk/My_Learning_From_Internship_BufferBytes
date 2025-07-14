@@ -1,15 +1,20 @@
-import 'package:demo_project_1/Pages/login_page/widget/screen_splash_login.dart';
-import 'package:demo_project_1/api/api_services.dart';
-import 'package:demo_project_1/widgets/navigation_bar.dart';
+import 'package:demo_project_1/Pages/Login/widget/screen_splash_login.dart';
+import 'package:demo_project_1/Providers/home_provider/balance.dart';
+import 'package:demo_project_1/Services/api_services.dart';
+import 'package:demo_project_1/Navigation/navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var token = prefs.getString('token');
-  runApp(MaterialApp(
-    home: token == null ? ScreenSplashLogin() : HomeNavigationBar(),
+  runApp(ChangeNotifierProvider(
+    create: (context) => BalanceCounter()..fetchBalance()   ,
+    child: MaterialApp(
+      home: token == null ? ScreenSplashLogin() : HomeNavigationBar(),
+    ),
   ));
 }
 
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'sample app',
       theme: ThemeData(useMaterial3: true),
-    
+
 
       debugShowCheckedModeBanner: false,
       home: ScreenSplashLogin(),

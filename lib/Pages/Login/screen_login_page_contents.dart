@@ -1,7 +1,7 @@
-import 'package:demo_project_1/Pages/login_page/widget/components_of_login_page.dart';
-import 'package:demo_project_1/api/api_services.dart';
-import 'package:demo_project_1/models/models_json.dart';
-import 'package:demo_project_1/widgets/navigation_bar.dart';
+import 'package:demo_project_1/Pages/Login/widget/components_of_login_page.dart';
+import 'package:demo_project_1/Services/api_services.dart';
+import 'package:demo_project_1/Models/models_json.dart';
+import 'package:demo_project_1/Navigation/navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class LoginPageContents extends StatefulWidget {

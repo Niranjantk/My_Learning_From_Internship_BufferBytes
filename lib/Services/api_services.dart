@@ -1,5 +1,5 @@
-import 'package:demo_project_1/models/models_json.dart';
-import 'package:demo_project_1/service/api_urls.dart';
+import 'package:demo_project_1/Models/models_json.dart';
+import 'package:demo_project_1/Urls/api_urls.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,7 +26,13 @@ class BalanceTranscations {
 
 //PUT TRANSACTION DETAILS
 class PutTranscations {
-  Future<void> putdata(String id, String title,String date, double amount, double cashback) async {
+  Future<void> putdata(
+    String id,
+    String title,
+    String date,
+    double amount,
+    double cashback,
+  ) async {
     try {
       final response = await http.put(
         Uri.parse('http://192.168.1.67:3000/transactions/$id'),
@@ -52,7 +58,7 @@ class PutTranscations {
 class AddMoneyTranscations {
   Future<String> getData() async {
     try {
-      await Future.delayed(Duration(seconds: 2));
+      //await Future.delayed(Duration(seconds: 2));
       final response = await http.get(
         Uri.parse('http://192.168.1.67:3000/balance'),
       );

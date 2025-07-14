@@ -1,4 +1,4 @@
-import 'package:demo_project_1/Pages/Home/widgets/add_new_Card.dart';
+import 'package:demo_project_1/Pages/Home/widgets/screen_add_new_Card.dart';
 import 'package:flutter/material.dart';
 
 class ScrolableCards extends StatelessWidget {
@@ -200,7 +200,7 @@ class Imagesalign extends StatelessWidget {
 
                   width: 100,
                   height: 50,
-                  
+
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 255, 255, 255),
                     borderRadius: BorderRadius.circular(17),

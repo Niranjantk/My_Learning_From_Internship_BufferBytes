@@ -1,4 +1,4 @@
-import 'package:demo_project_1/Pages/login_page/screen_login_page_contents.dart';
+import 'package:demo_project_1/Pages/Login/screen_login_page_contents.dart';
 import 'package:flutter/material.dart';
 
 class ScreenSplashLogin extends StatefulWidget {
