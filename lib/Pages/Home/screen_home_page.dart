@@ -1,7 +1,9 @@
 import 'package:demo_project_1/Pages/Home/widgets/appBar_C.dart';
 import 'package:demo_project_1/Pages/Home/widgets/head_lines.dart';
+import 'package:demo_project_1/Providers/home_provider/pro_transcations.dart';
 import 'package:demo_project_1/Services/api_services.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Homepage1 extends StatefulWidget {
   const Homepage1({super.key});
@@ -11,8 +13,8 @@ class Homepage1 extends StatefulWidget {
 
 class _Homepage1State extends State<Homepage1> {
   final BalanceTranscations apiservese = BalanceTranscations();
-  bool loadinSgstate = true;
-  List<dynamic> transcations = [];
+  bool loadinSgstate = true;   //
+  List<dynamic> transcations = [];   //
   TextEditingController titlecontrolder = TextEditingController();
   TextEditingController amountcontrolder = TextEditingController();
   TextEditingController cashbackcontrolder = TextEditingController();
@@ -151,12 +153,12 @@ class _Homepage1State extends State<Homepage1> {
                                             amount,
                                             cashback,
                                           );
-                                          getData(); // Refresh the data after editing
+                                          getData();
                                           titlecontrolder.clear();
                                           amountcontrolder.clear();
                                           cashbackcontrolder.clear();
 
-                                          // Handle edit logic here
+
                                           Navigator.of(context).pop();
                                         },
                                         child: Text('Save'),
@@ -181,63 +183,71 @@ class _Homepage1State extends State<Homepage1> {
                       ),
                 );
               },
-              child: Container(
-                decoration: BoxDecoration(),
-                child: ListTile(
-                  title: Text(
-                    '${transcation['title']}',
-                    style: TextStyle(
-                      fontFamily: 'SpaceGrotesk',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  leading: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: .5),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage(
-                          'assets/images/starbucks.jpeg',
-                        ),
-                      ),
-                    ),
-                  ),
+              child: Column(
+                children: [
+                  Consumer(
+                    
+                    builder: (context, ProTranscations proTranscations, child) => Container(
+                      decoration: BoxDecoration(),
+                      child: ListTile(
+                        title: Text(
 
-                  subtitle: Text(
-                    datemonth,
-                    style: TextStyle(
-                      fontFamily: 'SpaceGrotesk',
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
+                          proTranscations. getTrancation[index-1]['title'],
+                          style: TextStyle(
+                            fontFamily: 'SpaceGrotesk',
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        leading: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black, width: .5),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                'assets/images/starbucks.jpeg',
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        subtitle: Text(
+                          proTranscations.getTrancation[index - 1]['date'],
+                          style: TextStyle(
+                            fontFamily: 'SpaceGrotesk',
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        trailing: Column(
+                          children: [
+                            Text(
+                              proTranscations.getTrancation[index - 1]['amount'].toString(),
+                              style: TextStyle(
+                                fontFamily: 'SpaceGrotesk',
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(
+                              '+\$${transcation['cashback']}',
+                              style: TextStyle(
+                                fontFamily: 'SpaceGrotesk',
+                                fontSize: 14,
+                                backgroundColor: Colors.greenAccent,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                  trailing: Column(
-                    children: [
-                      Text(
-                        '\$${transcation['amount']}',
-                        style: TextStyle(
-                          fontFamily: 'SpaceGrotesk',
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        '+\$${transcation['cashback']}',
-                        style: TextStyle(
-                          fontFamily: 'SpaceGrotesk',
-                          fontSize: 14,
-                          backgroundColor: Colors.greenAccent,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                ],
               ),
             );
           }

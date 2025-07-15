@@ -98,7 +98,7 @@ class _PersonInfoState extends State<PersonInfo> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${user!.firstName}${user!.lastName}",
+              "${user!.firstName}${user!.lastName}", 
               style: TextStyle(fontSize: 28, fontFamily: ''),
             ),
             Text(

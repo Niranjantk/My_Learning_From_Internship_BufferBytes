@@ -1,8 +1,7 @@
-
 import 'package:demo_project_1/Pages/History/screen_history_page.dart';
+import 'package:demo_project_1/Pages/Home/demo.dart';
 import 'package:demo_project_1/Pages/Home/screen_home_page.dart';
 import 'package:demo_project_1/Pages/Map/screen_map.dart';
-
 
 import 'package:demo_project_1/Pages/Profile/screen_profile_page.dart';
 import 'package:demo_project_1/Pages/Settings/screen_settings_page.dart';
@@ -21,7 +20,7 @@ class _NavigationBarState extends State<HomeNavigationBar> {
 
   //allof the page in the list
   final List<Widget> _pages = [
-    Homepage1(),RecordOfTrancations(), MapPage(), SteeingPage(), ProfilePage(),
+    Demo(), RecordOfTrancations(), MapPage(), SteeingPage(), ProfilePage(),
     //MapFoodAndStore(),
   ];
 

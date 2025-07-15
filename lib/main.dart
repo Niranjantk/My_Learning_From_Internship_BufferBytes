@@ -1,5 +1,7 @@
+import 'package:demo_project_1/Pages/Home/demo.dart';
 import 'package:demo_project_1/Pages/Login/widget/screen_splash_login.dart';
-import 'package:demo_project_1/Providers/home_provider/balance.dart';
+import 'package:demo_project_1/Providers/home_provider/pro_balance.dart';
+import 'package:demo_project_1/Providers/home_provider/pro_transcations.dart';
 import 'package:demo_project_1/Services/api_services.dart';
 import 'package:demo_project_1/Navigation/navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +12,16 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var token = prefs.getString('token');
-  runApp(ChangeNotifierProvider(
-    create: (context) => BalanceCounter()..fetchBalance()   ,
-    child: MaterialApp(
-      home: token == null ? ScreenSplashLogin() : HomeNavigationBar(),
-    ),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => ProTranscations()..getData()),
+      ChangeNotifierProvider(create: (context) => BalanceCounter()..fetchBalance()),
+    ],
+
+      child: MaterialApp(
+        home: token == null ? ScreenSplashLogin() : HomeNavigationBar(),
+      ),
+
   ));
 }
 

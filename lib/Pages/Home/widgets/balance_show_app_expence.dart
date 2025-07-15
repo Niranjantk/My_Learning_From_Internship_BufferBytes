@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:demo_project_1/Providers/home_provider/balance.dart';
+import 'package:demo_project_1/Providers/home_provider/pro_balance.dart';
 import 'package:demo_project_1/Services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -44,15 +44,17 @@ class _CardviewState extends State<AddMoneyButtonClick> {
     };
 
     final response = await http.post(
-      Uri.parse('http://10.0.2.2:3000/transactions'),
+      Uri.parse('http://192.168.1.67:3000/transactions'),
       body: jsonEncode(data),
     );
 
     if (response.statusCode == 200) {
+      print(response.statusCode);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("Transaction added")));
     } else {
+      print(response.statusCode);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text("Failed to add transaction")));
