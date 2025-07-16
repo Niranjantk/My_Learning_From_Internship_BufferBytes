@@ -13,8 +13,8 @@ class Homepage1 extends StatefulWidget {
 
 class _Homepage1State extends State<Homepage1> {
   final BalanceTranscations apiservese = BalanceTranscations();
-  bool loadinSgstate = true;   //
-  List<dynamic> transcations = [];   //
+  bool loadinSgstate = true; //
+  List<dynamic> transcations = []; //
   TextEditingController titlecontrolder = TextEditingController();
   TextEditingController amountcontrolder = TextEditingController();
   TextEditingController cashbackcontrolder = TextEditingController();
@@ -93,7 +93,7 @@ class _Homepage1State extends State<Homepage1> {
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
-                              setState(() {});
+                              
                               showDialog(
                                 context: context,
                                 builder: (context) {
@@ -139,13 +139,8 @@ class _Homepage1State extends State<Homepage1> {
                                                 amountcontrolder.text,
                                               ) ??
                                               0.0;
-                                          final cashback =
-                                              double.tryParse(
-                                                cashbackcontrolder.text,
-                                              ) ??
-                                              0.0;
-                                          PutTranscations putTranscations =
-                                              PutTranscations();
+                                          final cashback =double.tryParse(cashbackcontrolder.text,) ??0.0;
+                                          PutTranscations putTranscations =PutTranscations();
                                           await putTranscations.putdata(
                                             id,
                                             title,
@@ -157,7 +152,6 @@ class _Homepage1State extends State<Homepage1> {
                                           titlecontrolder.clear();
                                           amountcontrolder.clear();
                                           cashbackcontrolder.clear();
-
 
                                           Navigator.of(context).pop();
                                         },
@@ -186,66 +180,74 @@ class _Homepage1State extends State<Homepage1> {
               child: Column(
                 children: [
                   Consumer(
-                    
-                    builder: (context, ProTranscations proTranscations, child) => Container(
-                      decoration: BoxDecoration(),
-                      child: ListTile(
-                        title: Text(
-
-                          proTranscations. getTrancation[index-1]['title'],
-                          style: TextStyle(
-                            fontFamily: 'SpaceGrotesk',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        leading: Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: .5),
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              backgroundImage: AssetImage(
-                                'assets/images/starbucks.jpeg',
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        subtitle: Text(
-                          proTranscations.getTrancation[index - 1]['date'],
-                          style: TextStyle(
-                            fontFamily: 'SpaceGrotesk',
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        trailing: Column(
-                          children: [
-                            Text(
-                              proTranscations.getTrancation[index - 1]['amount'].toString(),
+                    builder:
+                        (
+                          context,
+                          ProTranscations proTranscations,
+                          child,
+                        ) => Container(
+                          decoration: BoxDecoration(),
+                          child: ListTile(
+                            title: Text(
+                              proTranscations.getTrancation[index - 1]['title'],
                               style: TextStyle(
                                 fontFamily: 'SpaceGrotesk',
-                                fontSize: 18,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            Text(
-                              '+\$${transcation['cashback']}',
-                              style: TextStyle(
-                                fontFamily: 'SpaceGrotesk',
-                                fontSize: 14,
-                                backgroundColor: Colors.greenAccent,
+                            leading: Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: .5,
+                                ),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CircleAvatar(
+                                  backgroundImage: AssetImage(
+                                    'assets/images/starbucks.jpeg',
+                                  ),
+                                ),
                               ),
                             ),
-                          ],
+
+                            subtitle: Text(
+                              proTranscations.getTrancation[index - 1]['date'],
+                              style: TextStyle(
+                                fontFamily: 'SpaceGrotesk',
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            trailing: Column(
+                              children: [
+                                Text(
+                                  proTranscations
+                                      .getTrancation[index - 1]['amount']
+                                      .toString(),
+                                  style: TextStyle(
+                                    fontFamily: 'SpaceGrotesk',
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  '+\$${transcation['cashback']}',
+                                  style: TextStyle(
+                                    fontFamily: 'SpaceGrotesk',
+                                    fontSize: 14,
+                                    backgroundColor: Colors.greenAccent,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
                   ),
                 ],
               ),

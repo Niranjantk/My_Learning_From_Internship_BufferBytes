@@ -7,12 +7,12 @@ class BalanceCounter extends ChangeNotifier {
   String balance = '';
   bool loadingState = true;
 
-  String get getBalance => balance;
+  //String get getBalance => balance;
   bool get isLoading => loadingState;
 
-  void fetchBalance() async {
-    loadingState = true;
-    notifyListeners();
+  Future<void> fetchBalance() async {
+    // loadingState = true;
+    // notifyListeners();
     balance = await addMoneyTranscations.getData();
     loadingState = false;
     notifyListeners();

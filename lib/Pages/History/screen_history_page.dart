@@ -1,4 +1,5 @@
 import 'package:demo_project_1/Pages/History/widgets/small_scroble_cards.dart';
+import 'package:demo_project_1/Pages/Home/demo.dart';
 
 import 'package:flutter/material.dart';
 
@@ -27,29 +28,29 @@ class MapPage extends StatelessWidget {
 
         backgroundColor: const Color(0xFFF2F3F5),
       ),
-      body: Column(
-        children: [
-          Container(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 200),
-              child: const Text(
-                "Selece card",
-                style: TextStyle(
-                  fontFamily: 'SpaceGrotesk',
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 200),
+                child: const Text(
+                  "Selece card",
+                  style: TextStyle(
+                    fontFamily: 'SpaceGrotesk',
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-          ),
-          // Container(child:
-          SmallScrolableCards(),
+            // Container(child:
+            SmallScrolableCards(),
 
-
-
-
-        ],
-
+            Transcation(),
+          ],
+        ),
       ),
     );
   }

@@ -1,4 +1,4 @@
-import 'package:demo_project_1/Models/models_json.dart';
+import 'package:demo_project_1/Models/m_user_details.dart';
 import 'package:demo_project_1/Urls/api_urls.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';

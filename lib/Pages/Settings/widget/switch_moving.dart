@@ -1,5 +1,7 @@
+import 'package:demo_project_1/Providers/theam_provider/pro_theam.dart';
 import 'package:demo_project_1/main.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Sw extends StatefulWidget {
   const Sw({super.key});
@@ -14,29 +16,11 @@ class _SwState extends State<Sw> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Switch(
-        value: light,
-        activeThumbColor: Colors.deepPurpleAccent,
-        onChanged: (bool value) {
-          setState(() {
-            light = value;
-            if (light == true) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Light Mode Enabled"),
-                  duration: Duration(seconds: 2),
-                ),
-              );
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Dark Mode Enabled"),
-                  duration: Duration(seconds: 2),
-                ),
-              );
-            }
-          });
+      child: ElevatedButton(
+        onPressed: () {
+          // Provider.of<ProTheam>(context, listen: false).choiceTheam();
         },
+        child: Icon(Icons.dark_mode),
       ),
     );
   }

@@ -1,7 +1,8 @@
 import 'package:demo_project_1/Pages/Login/screen_login_page_contents.dart';
 import 'package:demo_project_1/Services/api_services.dart';
-import 'package:demo_project_1/Models/models_json.dart';
+import 'package:demo_project_1/Models/m_user_details.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProfileSectionPersonalInfo extends StatefulWidget {
   //final String accessToken;
@@ -12,8 +13,7 @@ class ProfileSectionPersonalInfo extends StatefulWidget {
       _ProfileSectionPersonalInfoState();
 }
 
-class _ProfileSectionPersonalInfoState
-    extends State<ProfileSectionPersonalInfo> {
+class _ProfileSectionPersonalInfoState extends State<ProfileSectionPersonalInfo> {
   late Future<LoginModel?> userData;
 
   @override
@@ -91,35 +91,37 @@ class _PersonInfoState extends State<PersonInfo> {
     if (user == null) {
       return Center(child: CircularProgressIndicator());
     }
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "${user!.firstName}${user!.lastName}", 
-              style: TextStyle(fontSize: 28, fontFamily: ''),
-            ),
-            Text(
-              "${user!.email}",
-              style: TextStyle(fontSize: 20, fontFamily: ''),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(
-                    user!.gender!.toLowerCase() == 'male'
-                        ? Icons.mail
-                        : Icons.female,
-                  ),
-                  Text("${user!.gender}"),
-                ],
+    return Consumer(
+      builder: (context, value, child) =>Container(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${user!.firstName}${user!.lastName}",
+                style: TextStyle(fontSize: 28, fontFamily: ''),
               ),
-            ),
-          ],
+              Text(
+                "${user!.email}",
+                style: TextStyle(fontSize: 20, fontFamily: ''),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Icon(
+                      user!.gender!.toLowerCase() == 'male'
+                          ? Icons.mail
+                          : Icons.female,
+                    ),
+                    Text("${user!.gender}"),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -2,7 +2,7 @@ import 'package:demo_project_1/Pages/Profile/widget/profile_section_personal_inf
 import 'package:demo_project_1/Pages/Login/screen_login_page_contents.dart';
 import 'package:demo_project_1/Services/api_services.dart';
 
-import 'package:demo_project_1/Models/models_json.dart';
+import 'package:demo_project_1/Models/m_user_details.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {

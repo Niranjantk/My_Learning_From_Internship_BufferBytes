@@ -18,7 +18,7 @@ class AllowTranscations extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const Icon(Icons.dark_mode_sharp),
+          const Icon(Icons.lightbulb_circle),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

@@ -158,10 +158,12 @@ class _AlertDialogBoxState extends State<AlertDialogBox> {
             ),
             TextButton(
               onPressed: () {
+                Navigator.of(context).pop();
                 showDialog(
                   context: context,
                   builder: (context) => EditTrancations(index: 0),
                 );
+
               },
               child: Text("edit"),
             ),
@@ -211,9 +213,28 @@ class _EditTrancationsState extends State<EditTrancations> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
+
               child: Text('Close'),
             ),
-            TextButton(onPressed: () {}, child: Text('save')),
+            TextButton(
+              onPressed: () async {
+                final id = transcation['id'];
+                final title = titlecontrolder.text;
+                final data = DateTime.now().toIso8601String();
+                final amount = double.parse(amountcontrolder.text);
+                final cashback = double.parse(cashbackcontrolder.text);
+                await proTranscations.putdatatranscation(
+                  id,
+                  title,
+                  data,
+                  amount,
+                  cashback,
+                );
+                proTranscations.getData();
+                Navigator.of(context).pop();
+              },
+              child: Text('save'),
+            ),
           ],
           content: SizedBox(
             child: Column(

@@ -1,4 +1,4 @@
-import 'package:demo_project_1/Models/models_json.dart';
+import 'package:demo_project_1/Models/m_user_details.dart';
 import 'package:demo_project_1/Services/api_services.dart';
 import 'package:flutter/material.dart';
 
@@ -19,11 +19,15 @@ class ProTranscations extends ChangeNotifier {
     notifyListeners();
     transcations = data;
     notifyListeners();
-  } 
+  }
+
+   putdatatranscation(dynamic id , String title, String data,double amount , double cashback) async {
+    PutTranscations putTranscations = PutTranscations();
+    await putTranscations.putdata(id, title, data,amount, cashback);
+  }
 }
 
-void date(dynamic formateddate){
-
+void date(dynamic formateddate) {
   DateTime date = DateTime.parse(formateddate);
   String day = date.day.toString().padLeft(2, '0');
   String month = date.month.toString().padLeft(2, '0');
@@ -31,5 +35,4 @@ void date(dynamic formateddate){
   String hour = date.hour.toString().padLeft(2, '0');
   String minute = date.minute.toString().padLeft(2, '0');
   String datemonth = '$year - $month - $day  $hour : $minute';
-
 }
