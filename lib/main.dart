@@ -30,7 +30,7 @@ Future<void> main() async {
           return MaterialApp(
             //theme: Provider.of<ProTheam>(contexts).theamdatas,
             //theme: lightMode,
-            theme: Provider.of<ProTheam>(context).theamdatas,
+            //theme: Provider.of<ProTheam>(context).theamdatas,
             home: token == null ? ScreenSplashLogin() : HomeNavigationBar(),
           );
         }

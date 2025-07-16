@@ -66,11 +66,8 @@ class _CardviewState extends State<AddMoneyButtonClick> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     Provider.of<BalanceCounter>(context,listen: false).fetchBalance();
-
-
-
-
   }
+
   @override
   void dispose() {
     super.dispose();
